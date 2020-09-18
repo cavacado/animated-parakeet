@@ -37,6 +37,22 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
+### `npm run audit`
+
+this command uses a dependency called audit-ci, which checks all dependencies of the project whether they
+pass a certain security clearance. It has been configured to the strictest setting: high, and will block
+the deployment of the application if security levels are not fufilled (This is invoked in gitub actions).
+
+### `npm run cy:open`
+
+this command opens the cypress interactive testing electron application. Here one can run end to end tests locally. It is highly adviceable to change the baseUrl of cypress.json to your localhost when testing
+your smoke tests locally.
+
+### `npm run cy:run`
+
+this command runs the integration cypress tests on a headless browser. It is normally invoked only in
+the smoke job in the workflow of github actions.
+
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).

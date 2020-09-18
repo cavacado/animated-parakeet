@@ -7,6 +7,11 @@ module.exports = {
   transform: {
     "^.+\\.tsx?$": "ts-jest",
   },
+  globals: {
+    "ts-jest": {
+      diagnostics: false,
+    },
+  },
   testRegex: "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx)$",
   coverageReporters: ["json", "lcov", "text"],
   coveragePathIgnorePatterns: [".*/src/.*\\.d\\.ts", ".*/src/testUtil/.*"],

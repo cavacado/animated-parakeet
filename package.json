@@ -4,17 +4,22 @@
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
+    "@testing-library/react": "^11.0.4",
     "@testing-library/user-event": "^7.2.1",
     "@types/jest": "^24.9.1",
     "@types/node": "^12.12.59",
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
+    "@types/react-router-dom": "^5.1.5",
+    "@types/styled-components": "^5.1.3",
+    "@types/react-toggle": "^4.0.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
     "react-router-dom": "^5.2.0",
-    "typescript": "^3.7.5"
+    "typescript": "^4.0.3",
+    "styled-components": "^5.2.0",
+    "react-toggle": "^4.1.1"
   },
   "devDependencies": {
     "cypress": "^5.2.0",
@@ -22,14 +27,15 @@
     "prettier": "2.1.2",
     "pretty-quick": "^3.0.2",
     "ts-jest": "^26.3.0",
-    "audit-ci": "^3.1.1"
+    "audit-ci": "^3.1.1",
+    "cross-env": "7.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "audit": "audit-ci --config audit-ci.json",
     "build": "react-scripts build",
-    "test": "CI=true react-scripts test --env=jsdom --coverage",
-    "cy:open": "$(npm bin)/cypress open",
+    "test": "cross-env CI=true react-scripts test --env=jsdom --coverage",
+    "cy:open": "cross-env NODE_ENV=development $(npm bin)/cypress open",
     "cy:run": "$(npm bin)/cypress run",
     "eject": "react-scripts eject"
   },
