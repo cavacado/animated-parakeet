@@ -6,10 +6,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
+      - uses: bahmutov/npm-install@v1
       - name: install and test
-        run: |
-          npm install
-          npm test
+        run: npm test
         env:
           CI: true
       - name: build package
@@ -26,3 +25,14 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "animated-parakeet"
           heroku_email: "ngzhaoloong@gmail.com"
+  smoke:
+    needs: [deploy]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: bahmutov/npm-install@v1
+      - uses: cypress-io/github-action@v2
+        with:
+          headless: true
+          browser: chrome
+          quiet: true

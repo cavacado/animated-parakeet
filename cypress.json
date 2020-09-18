@@ -1,0 +1,5 @@
+{
+  "baseUrl": "https://animated-parakeet.herokuapp.com",
+  "screenshotOnRunFailure": false,
+  "video": false
+}
