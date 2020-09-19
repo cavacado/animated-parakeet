@@ -1,5 +1,9 @@
 name: test-build-audit-actions
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - master
+  pull_request:
 jobs:
   sanity:
     runs-on: ubuntu-latest
