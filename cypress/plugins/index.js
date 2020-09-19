@@ -18,4 +18,10 @@
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
+  const newBaseUrl =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3000"
+      : config.baseUrl;
+  config.baseUrl = newBaseUrl;
+  return config;
 };

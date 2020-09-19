@@ -1,5 +1,5 @@
 name: test-build-audit-actions
-on: [push]
+on: [push, pull_request]
 jobs:
   sanity:
     runs-on: ubuntu-latest
@@ -16,6 +16,7 @@ jobs:
       - name: audit dependencies
         run: npm run audit
   deploy:
+    if: github.ref == 'refs/heads/master'
     needs: [sanity]
     runs-on: ubuntu-latest
     steps:
@@ -26,6 +27,7 @@ jobs:
           heroku_app_name: "animated-parakeet"
           heroku_email: "ngzhaoloong@gmail.com"
   smoke:
+    if: github.ref == 'refs/heads/master'
     needs: [deploy]
     runs-on: ubuntu-latest
     steps:
