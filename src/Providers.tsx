@@ -1,7 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
+import { Provider } from "react-redux";
 import Routes from "./Routes";
+import store from "./data/store";
+import services from "./services";
 import { lightTheme, darkTheme, ThemeType } from "./utils/theme";
 import "react-toggle/style.css";
 
@@ -13,14 +16,16 @@ export default function () {
     setTheme(userPreference);
   }, []);
   return (
-    <Router>
-      <ThemeProvider theme={isLight ? lightTheme : darkTheme}>
-        <>
-          <GlobalStyles />
-          <Routes isLight={isLight} setTheme={setTheme} />
-        </>
-      </ThemeProvider>
-    </Router>
+    <Provider store={store(services)}>
+      <Router>
+        <ThemeProvider theme={isLight ? lightTheme : darkTheme}>
+          <>
+            <GlobalStyles />
+            <Routes isLight={isLight} setTheme={setTheme} />
+          </>
+        </ThemeProvider>
+      </Router>
+    </Provider>
   );
 }
 
@@ -47,7 +52,6 @@ const GlobalStyles = createGlobalStyle<{ theme: ThemeType }>`
   background-color: ${(p) => p.theme.toggleBackground}
 }
 .react-toggle--checked .react-toggle-thumb {
-    left: 27px;
     border-color: ${(p) => p.theme.toggleBorder}
 }
 `;
