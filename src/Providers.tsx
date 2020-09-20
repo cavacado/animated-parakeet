@@ -3,6 +3,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import { Provider } from "react-redux";
 import Routes from "./Routes";
+import Layout from "./components/Layout";
 import store from "./data/store";
 import services from "./services";
 import { lightTheme, darkTheme, ThemeType } from "./utils/theme";
@@ -19,10 +20,10 @@ export default function () {
     <Provider store={store(services)}>
       <Router>
         <ThemeProvider theme={isLight ? lightTheme : darkTheme}>
-          <>
-            <GlobalStyles />
-            <Routes isLight={isLight} setTheme={setTheme} />
-          </>
+          <GlobalStyles />
+          <Layout isLight={isLight} setTheme={setTheme}>
+            <Routes />
+          </Layout>
         </ThemeProvider>
       </Router>
     </Provider>
@@ -32,14 +33,14 @@ export default function () {
 const GlobalStyles = createGlobalStyle<{ theme: ThemeType }>`
   body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: Lato, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: ${(p) => p.theme.body};
   color: ${(p) => p.theme.text};
-  transition: all 0.25s linear;
+  transition: all 0.20s ease;
 }
 // global style-overwrite for the toggle component
 .react-toggle--checked .react-toggle-track {
