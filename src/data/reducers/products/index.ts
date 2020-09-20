@@ -2,8 +2,14 @@ import { handleActions } from "redux-actions";
 
 import { AsyncStates } from "../../../utils";
 import { ProductsActionTypes } from "../../actions/products";
+import { movie } from "../../../services/Products/interface";
 
-export const initialState = {
+export interface ProductsState {
+  status: AsyncStates;
+  error: string;
+  data: movie[];
+}
+export const initialState: ProductsState = {
   status: AsyncStates.INITIAL,
   error: "",
   data: [],
