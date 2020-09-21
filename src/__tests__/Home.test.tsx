@@ -1,5 +1,5 @@
 import React from "react";
-import { render, waitFor, screen, fireEvent } from "@testing-library/react";
+import { render, waitFor, fireEvent } from "@testing-library/react";
 import { MemoryRouter, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "../data/store";
@@ -40,8 +40,43 @@ describe("Home tests", () => {
     await waitFor(() => expect(mockGetProducts).toHaveBeenCalledTimes(1));
     expect(getByText("Deadpool")).toBeInTheDocument;
   });
+  it("filters products by year", async () => {
+    const { getByText, getAllByText } = renderWithRouter(["/"], mockServices);
+    await waitFor(() => expect(mockGetProducts).toHaveBeenCalledTimes(1));
+    expect(getByText("Deadpool")).toBeInTheDocument;
+    const filterByYear = getByText("filter by year");
+    fireEvent.click(filterByYear);
+    const target = getAllByText("2010")[0];
+    fireEvent.click(target);
+    expect(getByText("Alice in Wonderland")).toBeInTheDocument;
+  });
+  it("filters products by genre", async () => {
+    const { getByText, getAllByText } = renderWithRouter(["/"], mockServices);
+    await waitFor(() => expect(mockGetProducts).toHaveBeenCalledTimes(1));
+    expect(getByText("Deadpool")).toBeInTheDocument;
+    const filterByGenre = getByText("filter by genre");
+    fireEvent.click(filterByGenre);
+    const target = getAllByText("Action")[0];
+    fireEvent.click(target);
+    expect(getByText("Tomorrowland")).toBeInTheDocument;
+  });
+  it("resets filters on reset filter click", async () => {
+    const { getByText, getAllByText } = renderWithRouter(["/"], mockServices);
+    await waitFor(() => expect(mockGetProducts).toHaveBeenCalledTimes(1));
+    expect(getByText("Deadpool")).toBeInTheDocument;
+    const filterByGenre = getByText("filter by genre");
+    fireEvent.click(filterByGenre);
+    const genreTarget = getAllByText("Action")[0];
+    fireEvent.click(genreTarget);
+    const filterByYear = getByText("filter by year");
+    fireEvent.click(filterByYear);
+    const yearTarget = getAllByText("2010")[0];
+    fireEvent.click(yearTarget);
+    fireEvent.click(getByText("reset filters"));
+    expect(getByText("Deadpool")).toBeInTheDocument;
+  });
   it("goes to details page on item click", async () => {
-    const { getByText, getByTestId } = renderWithRouter(["/"], mockServices);
+    const { getByText } = renderWithRouter(["/"], mockServices);
     await waitFor(() => expect(mockGetProducts).toHaveBeenCalledTimes(1));
     expect(getByText("Deadpool")).toBeInTheDocument;
     fireEvent.click(getByText("Deadpool"));
