@@ -1,6 +1,6 @@
 import styled from "styled-components";
 export const HomeContainer = styled.div`
-  overflow-y: scroll;
+  min-height: 65vh;
 `;
 export const HomeGrid = styled.div`
   display: grid;
