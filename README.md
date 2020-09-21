@@ -45,8 +45,7 @@ the deployment of the application if security levels are not fufilled (This is i
 
 ### `npm run cy:open`
 
-this command opens the cypress interactive testing electron application. Here one can run end to end tests locally. It is highly adviceable to change the baseUrl of cypress.json to your localhost when testing
-your smoke tests locally.
+this command opens the cypress interactive testing electron application. Here one can run end to end tests locally. It has been configured to visit http://localhost:3000 when run locally. It still hits the service url of the application as stated in .env file.
 
 ### `npm run cy:run`
 
@@ -58,3 +57,25 @@ the smoke job in the workflow of github actions.
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## This project is setup with github actions.
+github actions allows automation of tasks such as sanity checks / deploy processes and smoke tests.
+This application will go through those steps as mentioned above.
+
+sanity checks:
+- this consists of format checks / unit tests / compile checks / audit checks
+
+deploy:
+- when run, the application will automatically deploy to `heroku`, and will retry until build succeeds.
+
+smoke tests:
+- upon successful steps, the application will then run smoke tests on the deployed instance
+- these are high level functionality checks. even if these fail, the application will already be deployed.
+- a developer can then re-run all the jobs in order to make the pipeline pass.
+
+## This project is setup with google analytics
+google analytics provides a simple and easy way to track users of the application.
+this is vital for analysing traffic flows and segregating user groups.
+
+## This project is hosted on heroku:
+and the corresponding deployed link is as follows: [here](https://animated-parakeet.herokuapp.com/)
