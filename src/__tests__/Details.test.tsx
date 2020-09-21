@@ -15,6 +15,9 @@ const mockServices = {
     getProducts: mockGetProducts,
   },
 };
+const mockWindowScroll = jest.fn();
+
+global.window.scroll = mockWindowScroll;
 
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),

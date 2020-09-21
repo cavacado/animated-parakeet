@@ -11,6 +11,13 @@ import {
 export default function () {
   const location = useLocation();
   const { synopsis, genre, productionYear, name, image } = location.state;
+  React.useLayoutEffect(() => {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, []);
   return (
     <DetailsContainer>
       <ProductHead>
