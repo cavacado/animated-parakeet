@@ -6,5 +6,4 @@ export const DetailsContainer = styled.div`
   border: 1px dashed ${(p) => p.theme.productBorder};
   border-radius: 0.2em;
   margin: 1em;
-  overflow-y: scroll;
 `;

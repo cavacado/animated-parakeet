@@ -42,7 +42,7 @@ export default function () {
   const isError = status === AsyncStates.ERROR;
   React.useEffect(() => {
     dispatch(productActions.productsRequest());
-  }, []);
+  }, [dispatch]);
   React.useEffect(() => {
     if (isSuccess) {
       const augmentedData = data.map(injectProductImageCallback);

@@ -5,5 +5,5 @@ export const Blank = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  overflow-y: scroll;
+  height: 100vh;
 `;
