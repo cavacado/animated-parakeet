@@ -59,23 +59,33 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## This project is setup with github actions.
+
 github actions allows automation of tasks such as sanity checks / deploy processes and smoke tests.
 This application will go through those steps as mentioned above.
 
 sanity checks:
+
 - this consists of format checks / unit tests / compile checks / audit checks
 
 deploy:
+
 - when run, the application will automatically deploy to `heroku`, and will retry until build succeeds.
 
 smoke tests:
+
 - upon successful steps, the application will then run smoke tests on the deployed instance
 - these are high level functionality checks. even if these fail, the application will already be deployed.
 - a developer can then re-run all the jobs in order to make the pipeline pass.
 
 ## This project is setup with google analytics
+
 google analytics provides a simple and easy way to track users of the application.
 this is vital for analysing traffic flows and segregating user groups.
 
 ## This project is hosted on heroku:
+
 and the corresponding deployed link is as follows: [here](https://animated-parakeet.herokuapp.com/)
+
+## Contributors:
+
+Hari + Wanyin for manual sanity

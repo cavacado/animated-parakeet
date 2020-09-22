@@ -8,6 +8,7 @@ import { movie } from "../../services/Products/interface";
 import { placeHolderDetails } from "../../services/Products/mockData";
 import { HomeContainer, HomeGrid, DropdownContainer } from "./styled";
 import ErrorPage from "../FullPage/Error";
+import FullPage from "../FullPage";
 import Product from "./Product";
 import { AsyncStates } from "src/utils";
 import Loading from "react-fullscreen-loading";
@@ -123,11 +124,15 @@ export default function () {
               })}
             </Dropdown>
           </DropdownContainer>
-          <HomeGrid>
-            {filteredProducts.map((product, i) => {
-              return <Product {...product} key={`product-${i}`} />;
-            })}
-          </HomeGrid>
+          {filteredProducts.length > 0 ? (
+            <HomeGrid>
+              {filteredProducts.map((product, i) => {
+                return <Product {...product} key={`product-${i}`} />;
+              })}
+            </HomeGrid>
+          ) : (
+            <FullPage description={"there are no filtered results"} />
+          )}
         </HomeContainer>
       )}
     </>
