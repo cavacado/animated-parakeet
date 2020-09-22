@@ -4,7 +4,8 @@ export const HomeContainer = styled.div`
 `;
 export const HomeGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  margin: 1em;
 `;
 
 export const ProductContainer = styled.div`
@@ -19,6 +20,23 @@ export const ProductContainer = styled.div`
 
 export const DropdownContainer = styled.div`
   display: flex;
-  justify-content: flex-end;
-  margin: 1em;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 2em 2em 1em 2em;
+  .sgds-button {
+    width: 100%;
+  }
+  .sgds-dropdown-trigger {
+    width: 100%;
+  }
+  .sgds-dropdown-menu {
+    width: 100%;
+  }
+  @media screen and (min-width: 640px) {
+    flex-direction: row;
+    justify-content: flex-end;
+    .sgds-button {
+      width: auto;
+    }
+  }
 `;
